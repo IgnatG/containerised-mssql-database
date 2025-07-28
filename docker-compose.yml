@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  mssql:
+    build: .
+    container_name: mssql-server
+    restart: always
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: ${DATABASE_PASSWORD}
+      ACCEPT_EULA: "Y"
+    volumes:
+      - ./mssql:/opt/mssql-scripts
+    working_dir: /opt/mssql-scripts
